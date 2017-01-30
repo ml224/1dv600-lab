@@ -1,15 +1,15 @@
 (function () {
     "use strict";
 
-    var fs = require('fs');
+    let fs = require('fs');
 
     // Instructions how to use the xml2js
     // https://github.com/Leonidas-from-XIV/node-xml2js
-    var xml2js = require('xml2js');
+    let xml2js = require('xml2js');
 
 
     // Use this file to write and read the xml file.
-    var LibraryDAO = {
+    let LibraryDAO = {
 
         // Get the entire file from the file system.
         readXMLFile: function(callback) {
