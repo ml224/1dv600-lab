@@ -2,11 +2,11 @@
     "use strict";
 
     // modules
-    var express = require('express');
-    var app = express();
-    var server = require('http').Server(app);
-    var routes = require('./app/routes/routes.js');
-    var bodyParser = require('body-parser');
+    let express = require('express');
+    let app = express();
+    let server = require('http').Server(app);
+    let routes = require('./app/routes/routes.js');
+    let bodyParser = require('body-parser');
 
     // Start the server to listen for incoming requests on port 9090.
     server.listen(9090);
