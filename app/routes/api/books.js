@@ -1,14 +1,14 @@
 (function () {
     "use strict";
 
-    var express = require('express');
-    var router = express.Router();
+    let express = require('express');
+    let router = express.Router();
 
-    var AddBookResource = require('../../resources/AddBookResource');
-    var EditBookResource = require('../../resources/EditBookResource');
-    var GetBookResource = require('../../resources/GetBookResource');
-    var GetBooksResource = require('../../resources/GetBooksResource');
-    var RemoveBookResource = require('../../resources/RemoveBookResource');
+    let AddBookResource = require('../../resources/AddBookResource');
+    let EditBookResource = require('../../resources/EditBookResource');
+    let GetBookResource = require('../../resources/GetBookResource');
+    let GetBooksResource = require('../../resources/GetBooksResource');
+    let RemoveBookResource = require('../../resources/RemoveBookResource');
 
 
 
