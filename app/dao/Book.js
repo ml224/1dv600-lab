@@ -1,9 +1,40 @@
 "use strict";
-module.exports = function Book(id, title, author, genre, publishDate, description){
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.publishDate = publishDate;
-    this.description = description;
-};
+
+let fs = require("fs");
+let parseString = require("xml2js").parseString;
+
+function bookList(path) {
+
+        fs.readFile(path, function(err, data) {
+            if (err) {
+                return(err);
+            }
+
+        parseString(data, function (err, result) {
+            if(err) {
+                return(err);
+            }
+
+            let arr = [];
+
+            let books = result.catalog.book;
+
+            books.forEach(function(object) {
+                let obj = {};
+                obj.id = object.$.id;
+                obj.title = object.title.toString();
+                obj.author = object.author.toString();
+                obj.genre = object.genre.toString();
+                obj.publishDate = object.publish_date.toString();
+                obj.description = object.description.toString();
+
+                arr.push(obj);
+            });
+
+            return JSON.stringify(arr);
+        });
+    });
+}
+
+module.exports.createList = bookList;
+
