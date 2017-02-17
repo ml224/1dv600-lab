@@ -1,18 +1,20 @@
 (function () {
     "use strict";
 
-    let LibraryDAO = require('../dao/LibraryDAO');
-    let list = require("../dao/Book");
+    let LibraryDAO = require("../dao/LibraryDAO");
 
-
-
-    let file = "./books.xml";
+    let path = "./books.xml";
 
 
 
 
     module.exports = function (callback) {
-        let array = list.createList(file);
-        return callback(array);
+        LibraryDAO.readXMLFile(path, function(err, res) {
+            if(err) {
+                return callback(err);
+            }
+
+            return callback(res);
+        });
     };
 }());
