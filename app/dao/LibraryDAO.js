@@ -46,8 +46,39 @@
         },
 
         // Write the entire file from the file system.
-        writeXMLFile: function(data) {
+        writeXMLFile: function(id) {
+            fs.readFile("./books.xml", function (err, data) {
+                if (err) {
+                    return (err);
+                }
 
+
+                xml2js.parseString(data, function (err, res) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    let arr = [];
+
+                    res.catalog.book.forEach(function(object) {
+                     if(object.$.id !== id) {
+                     arr.push(object);
+                     }
+                     });
+
+
+                    //build new document with excluded book to replace old one
+                    let builder = new xml2js.Builder();
+                    let newXML = builder.buildObject(arr);
+
+
+                    fs.writeFile("./books.xml", newXML, "utf8", function(err, res) {
+                        if(err) {
+                            return err;
+                        }
+                    });
+                });
+            });
         }
     };
 
