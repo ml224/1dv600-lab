@@ -14,7 +14,7 @@
                 return callback(err);
             }
 
-            return callback(null, res);
+            return callback(res);
         });
     };
 }());

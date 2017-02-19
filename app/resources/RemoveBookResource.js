@@ -5,12 +5,12 @@
 
 
     module.exports = function (id, callback) {
-        LibraryDAO.writeXMLFile(id, function(error, response) {
-            if(error) {
-                return callback(error);
-            }
+        LibraryDAO.writeXMLFile(id, function(err, res) {
+           if(err) {
+               return callback(err);
+           }
+           return callback(null, res);
 
-            return callback(null, response);
         });
     };
 }());

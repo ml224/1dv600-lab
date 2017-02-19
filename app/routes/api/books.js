@@ -4,16 +4,16 @@
     let express = require('express');
     let router = express.Router();
 
-    let AddBookResource = require('../../resources/AddBookResource');
-    let EditBookResource = require('../../resources/EditBookResource');
-    let GetBookResource = require('../../resources/GetBookResource');
-    let GetBooksResource = require('../../resources/GetBooksResource');
-    let RemoveBookResource = require('../../resources/RemoveBookResource');
+    let AddBookResource = require("../../resources/AddBookResource");
+    let EditBookResource = require("../../resources/EditBookResource");
+    let GetBookResource = require("../../resources/GetBookResource");
+    let GetBooksResource = require("../../resources/GetBooksResource");
+    let RemoveBookResource = require("../../resources/RemoveBookResource");
 
 
 
-    router.get('/', function (req, res) {
-        res.type('json');
+    router.get("/", function (req, res) {
+        res.type("json");
 
         GetBooksResource(function (data) {
             res.send(data);
@@ -21,32 +21,31 @@
     });
 
 
-    router.put('/', function (req, res) {
-        res.type('json');
+    router.put("/", function (req, res) {
+        res.type("json");
 
-        AddBookResource(function () {
+        AddBookResource(req.body, function () {
             res.send("{}");
         });
     });
 
-
-    router.route('/:bookId')
+    router.route("/:bookId")
         .get(function (req, res) {
-            res.type('json');
+            res.type("json");
             GetBookResource(req.params.bookId, function (data) {
                 res.send(data);
             });
         })
 
         .post(function (req, res) {
-            res.type('json');
+            res.type("json");
             EditBookResource(req.params.bookId, req.body, function () {
                 res.send("{}");
             });
         })
 
         .delete(function (req, res) {
-            res.type('json');
+            res.type("json");
             RemoveBookResource(req.params.bookId, function () {
                 res.send("{}");
             });

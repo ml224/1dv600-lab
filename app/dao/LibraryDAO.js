@@ -13,22 +13,22 @@
     let LibraryDAO = {
 
         // Get the entire file from the file system.
-        readXMLFile: function(path, callback) {
-            fs.readFile(path, function(err, data) {
+        readXMLFile: function (path, callback) {
+            fs.readFile(path, function (err, data) {
                 if (err) {
                     return callback(err);
                 }
 
 
                 xml2js.parseString(data, function (err, result) {
-                    if(err) {
+                    if (err) {
                         return callback(err);
                     }
 
                     let arr = [];
                     let books = result.catalog.book;
 
-                    books.forEach(function(object) {
+                    books.forEach(function (object) {
                         let obj = {};
                         obj.id = object.$.id;
                         obj.title = object.title.toString();
@@ -46,35 +46,37 @@
         },
 
         // Write the entire file from the file system.
-        writeXMLFile: function(id) {
+        writeXMLFile: function (id) {
+
+
             fs.readFile("./books.xml", function (err, data) {
                 if (err) {
-                    return (err);
+                    return err;
                 }
 
 
                 xml2js.parseString(data, function (err, res) {
                     if (err) {
-                        console.log(err);
+                        return err;
                     }
+                    let books = res.catalog.book;
+                    books.forEach(function (obj) {
+                        if (obj.$.id === id) {
 
-                    let arr = [];
+                            delete books[books.indexOf(obj)];
 
-                    res.catalog.book.forEach(function(object) {
-                     if(object.$.id !== id) {
-                     arr.push(object);
-                     }
-                     });
+                        }
+                    });
 
 
                     //build new document with excluded book to replace old one
                     let builder = new xml2js.Builder();
-                    let newXML = builder.buildObject(arr);
+                    let newXML = builder.buildObject(res);
 
 
-                    fs.writeFile("./books.xml", newXML, "utf8", function(err, res) {
-                        if(err) {
-                            return err;
+                    fs.writeFile("./books.xml", newXML, "utf8", function (err, res) {
+                        if (err) {
+                            return (err);
                         }
                     });
                 });
