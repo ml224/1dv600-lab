@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    var LibraryDAO = require('../dao/LibraryDAO');
+    let LibraryDAO = require("../dao/LibraryDAO");
 
 
     module.exports = function (data, callback) {

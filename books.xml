@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <catalog>
-  <book id="2">
-    <author>Isaac Asimov</author>
-    <title>Foundation and Empire</title>
-    <genre>Science Ficition</genre>
-    <price>79</price>
-    <publish_date>1952-10-12</publish_date>
-    <description>Foundation and Empire is a novel written by Isaac Asimov that was published by Gnome Press in 1952. It is the second book published in the Foundation Series, and the fourth in the in-universe chronology. It takes place in two halves, originally published as separate novellas. The second part, The Mule, won a Hugo Award.</description>
-  </book>
   <book id="3">
     <author>Isaac Asimov</author>
     <title>Second Foundation</title>

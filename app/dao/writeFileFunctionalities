@@ -1,0 +1,19 @@
+(function() {
+    "use strict";
+    let Funcs = {
+
+        deleteObject: function(xml, id) {
+            let books = xml.catalog.book;
+            books.forEach(function (obj) {
+                if (obj.$.id === id) {
+
+                    delete books[books.indexOf(obj)];
+
+                }
+            });
+
+        },
+    };
+    module.exports = Funcs;
+}());
+

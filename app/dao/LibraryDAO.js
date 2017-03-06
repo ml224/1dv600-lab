@@ -2,6 +2,7 @@
     "use strict";
 
     let fs = require("fs");
+    let Funcs = require("./writeFileFunctionalities");
 
 
     // Instructions how to use the xml2js
@@ -46,7 +47,7 @@
         },
 
         // Write the entire file from the file system.
-        writeXMLFile: function (id) {
+        writeXMLFile: function (id, obj) {
 
 
             fs.readFile("./books.xml", function (err, data) {
@@ -59,14 +60,13 @@
                     if (err) {
                         return err;
                     }
-                    let books = res.catalog.book;
-                    books.forEach(function (obj) {
-                        if (obj.$.id === id) {
 
-                            delete books[books.indexOf(obj)];
+                    //if delete!
+                    if(id){
+                        Funcs.deleteObject(res, id);
+                    }
 
-                        }
-                    });
+                    //else add adding
 
 
                     //build new document with excluded book to replace old one
