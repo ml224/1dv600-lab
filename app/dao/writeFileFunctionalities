@@ -13,6 +13,30 @@
             });
 
         },
+        addObject: function(array, obj) {
+            let nr = 10;
+            //assigning id nr
+            array.forEach(function(object) {
+                if(parseInt(object.$.id) === nr) {
+                    nr+= 1;
+                }
+            });
+
+
+            let newBook = {
+                "$": { id: "" + nr+ "" },
+            author: [obj.author || ""],
+            title: [obj.title || ""],
+                genre: [obj.genre || ""],
+                price:[obj.price || ""],
+                publish_date:[obj.publish_date || ""],
+                description: [obj.description || ""]
+            };
+
+            //adding new obj to file content
+            array.push(newBook);
+            return array;
+        }
     };
     module.exports = Funcs;
 }());

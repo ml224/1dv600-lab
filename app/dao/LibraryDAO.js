@@ -35,7 +35,7 @@
                         obj.title = object.title.toString();
                         obj.author = object.author.toString();
                         obj.genre = object.genre.toString();
-                        obj.publishDate = object.publish_date.toString();
+                        obj.publish_date = object.publish_date.toString();
                         obj.description = object.description.toString();
 
                         arr.push(obj);
@@ -47,32 +47,33 @@
         },
 
         // Write the entire file from the file system.
-        writeXMLFile: function (id, obj) {
-
-
-            fs.readFile("./books.xml", function (err, data) {
+        writeXMLFile: function (path, id, obj) {
+            //read file
+            fs.readFile(path, function (err, data) {
                 if (err) {
                     return err;
                 }
-
-
+                //convert file content to js
                 xml2js.parseString(data, function (err, res) {
                     if (err) {
                         return err;
                     }
 
-                    //if delete!
+                    let books = res.catalog.book;
+                    //if id is defined, deleting object with matching id
                     if(id){
                         Funcs.deleteObject(res, id);
                     }
 
-                    //else add adding
+                    //if object is defined, adding object to content
+                    if(obj){
+                        Funcs.addObject(books, obj);
+                    }
 
 
-                    //build new document with excluded book to replace old one
+                    //build new document
                     let builder = new xml2js.Builder();
                     let newXML = builder.buildObject(res);
-
 
                     fs.writeFile("./books.xml", newXML, "utf8", function (err, res) {
                         if (err) {
